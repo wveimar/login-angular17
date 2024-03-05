@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { AuthService } from './auth.service';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -10,4 +11,14 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'login';
+  authService = inject(AuthService);
+
+  constructor(){
+    this.authService.login({
+      username: 'kminchelle',
+      password: '0lelplR'
+
+    })
+    .subscribe((r)=> console.log(r));
+  }
 }
