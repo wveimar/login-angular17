@@ -15,25 +15,26 @@ export class AuthService {
 
   constructor() { }
 
-  login(user: { 
-    username: string,
-    password: string
-  }):Observable<any> {
+  login(user: { username: string,password: string}):Observable<any> {
     return this.http
-    .post('https://dummyjson.com/auth/login',user)
+    .post('http://localhost:4000/apiAgenda/auth/login', user)
     .pipe(
-      tap((response:any) => this.doLoginUser(user.username,response.token)
+      tap((response:any) => this.doLoginUser(user.username,response.accessToken)
+     
     )
+    
     );
   }
 
   private doLoginUser (username: string, token: any){
     this.LoggedUser=username;
-    this.storeJwtToken(token.jwt);
+    debugger
+    this.storeJwtToken(token);
     this.isAuthenticatedSubject.next(true);
   }
 
-  private storeJwtToken(jwt:string){
+  private storeJwtToken(jwt:any){
+    alert(jwt);
     localStorage.setItem(this.JWT_TOKEN,jwt)
   }
 logout(){

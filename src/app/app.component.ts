@@ -15,8 +15,8 @@ export class AppComponent {
 
   constructor(){
     this.authService.login({
-      username: 'kminchelle',
-      password: '0lelplR'
+      username: 'tatansebas',
+      password: 'secret1234'
 
     })
     .subscribe((r)=> console.log(r));
